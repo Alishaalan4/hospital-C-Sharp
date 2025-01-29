@@ -70,7 +70,7 @@ namespace hospital
                 }
                 else if (role == "Admin")
                 {
-                    query = "SELECT AdminId, Name FROM Admins WHERE Email = @Email AND Password = @Password";
+                    query = "SELECT AdminId, Name, Email FROM Admins WHERE Email = @Email AND Password = @Password";
                 }
                 else // Doctor
                 {
