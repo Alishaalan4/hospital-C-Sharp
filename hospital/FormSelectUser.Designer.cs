@@ -1,6 +1,6 @@
 ﻿namespace hospital
 {
-    partial class Form4
+    partial class FormSelectUser
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // Form4
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "Form4";
-            this.Text = "Form4";
-            this.ResumeLayout(false);
-
+            this.Text = "FormSelectUser";
         }
 
         #endregion

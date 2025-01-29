@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -16,12 +15,14 @@ namespace hospital
             sql = new SqlConnection(@"Data Source=ALI-SHAALAN\SQLEXPRESS01;Initial Catalog=hospital;Integrated Security=True");
         }
 
-        // Static class to handle user session
+        // Static class to handle user and doctor sessions
         public static class UserSession
         {
-            public static int UserId { get; set; }
+            public static int UserId { get; set; }  // Stores User ID or Doctor ID
             public static string UserName { get; set; }
             public static string Role { get; set; }
+            public static string Email { get; set; }
+            public static string Specialty { get; set; } // Only for doctors
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -65,7 +66,7 @@ namespace hospital
                 string query;
                 if (role == "User")
                 {
-                    query = "SELECT UserId, Name FROM Users WHERE Email = @Email AND Password = @Password";
+                    query = "SELECT UserId, Name, Email FROM Users WHERE Email = @Email AND Password = @Password";
                 }
                 else if (role == "Admin")
                 {
@@ -73,7 +74,7 @@ namespace hospital
                 }
                 else // Doctor
                 {
-                    query = "SELECT DoctorId, Name FROM Doctors WHERE Email = @Email AND Password = @Password";
+                    query = "SELECT DoctorId, Name, Email, Specialty FROM Doctors WHERE Email = @Email AND Password = @Password";
                 }
 
                 cmd = new SqlCommand(query, sql);
@@ -85,13 +86,23 @@ namespace hospital
                 if (reader.HasRows)
                 {
                     reader.Read();  // Read user data
-                    int userId = role == "User" ? reader.GetInt32(0) : (role == "Admin" ? reader.GetInt32(0) : reader.GetInt32(0));  // UserId/AdminId/DoctorId
-                    string userName = reader.GetString(1);  // Name
+                    int userId = reader.GetInt32(0);
+                    string userName = reader.GetString(1);
+                    string email = reader.GetString(2);
 
-                    // Store the session data
+                    // Store session data
                     UserSession.UserId = userId;
                     UserSession.UserName = userName;
                     UserSession.Role = role;
+                    UserSession.Email = email;
+
+                    // If doctor, also store specialty
+                    if (role == "Doctor")
+                    {
+                        UserSession.Specialty = reader.GetString(3);
+                    }
+
+                    reader.Close();
 
                     // Redirect based on role
                     if (role == "User")

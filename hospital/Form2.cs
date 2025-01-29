@@ -37,7 +37,7 @@ namespace hospital
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Validate all required fields
+            // Validate all required fields 
             if (string.IsNullOrEmpty(txtName.Text) ||
                 string.IsNullOrEmpty(txtEmail.Text) ||
                 string.IsNullOrEmpty(txtPassword.Text) ||
