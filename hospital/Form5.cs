@@ -43,5 +43,10 @@ namespace hospital
         {
             new Form8().ShowDialog();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            new Form11().ShowDialog();
+        }
     }
 }
