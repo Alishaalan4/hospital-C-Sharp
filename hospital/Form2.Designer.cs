@@ -244,7 +244,7 @@
             this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button1.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(321, 332);
+            this.button1.Location = new System.Drawing.Point(313, 350);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(135, 31);
             this.button1.TabIndex = 18;
